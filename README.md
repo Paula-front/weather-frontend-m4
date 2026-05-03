@@ -207,9 +207,11 @@ weather-frontend-m4/
 │       ├── ciudades/
 │       └── clima/
 
-🔗 Proyectos anteriores
-Módulo 2: https://github.com/Paula-front/weather-frontend-m2
-Módulo 3: https://github.com/Paula-front/weather-frontend-m3
+## 🔗 Repositorios del proyecto
+
+- Módulo 2: https://github.com/Paula-front/weather-frontend-m2  
+- Módulo 3: https://github.com/Paula-front/weather-frontend-m3  
+- Módulo 4: https://github.com/Paula-front/weather-frontend-m4  
 
 👩‍💻 Autor
 
