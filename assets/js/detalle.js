@@ -1,5 +1,6 @@
 const contenedorDetalle = document.getElementById("weatherDetail");
 const contenedorPronostico = document.getElementById("forecastGrid");
+const contenedorEstadisticas = document.getElementById("weatherStats");
 
 function obtenerIcono(estado) {
   const texto = estado.toLowerCase();
@@ -30,6 +31,76 @@ function obtenerIcono(estado) {
   return "assets/img/clima/soleado.png";
 }
 
+// Busca una ciudad en el arreglo principal usando su id
+function buscarCiudadPorId(idCiudad) {
+  for (let i = 0; i < ciudades.length; i++) {
+    if (ciudades[i].id === idCiudad) {
+      return ciudades[i];
+    }
+  }
+
+  return null;
+}
+
+// Calcula estadísticas usando ciclos, variables y condicionales
+function calcularEstadisticas(pronosticoSemanal) {
+  let temperaturaMinima = pronosticoSemanal[0].min;
+  let temperaturaMaxima = pronosticoSemanal[0].max;
+  let sumaTemperaturas = 0;
+
+  let diasSoleados = 0;
+  let diasNublados = 0;
+  let diasLluviosos = 0;
+
+  for (let i = 0; i < pronosticoSemanal.length; i++) {
+    const dia = pronosticoSemanal[i];
+    const promedioDia = (dia.min + dia.max) / 2;
+    const estado = dia.estado.toLowerCase();
+
+    sumaTemperaturas += promedioDia;
+
+    if (dia.min < temperaturaMinima) {
+      temperaturaMinima = dia.min;
+    }
+
+    if (dia.max > temperaturaMaxima) {
+      temperaturaMaxima = dia.max;
+    }
+
+    if (estado.includes("lluvia") || estado.includes("llovizna")) {
+      diasLluviosos++;
+    } else if (estado.includes("nublado") || estado.includes("parcial")) {
+      diasNublados++;
+    } else {
+      diasSoleados++;
+    }
+  }
+
+  const temperaturaPromedio = (
+    sumaTemperaturas / pronosticoSemanal.length
+  ).toFixed(1);
+
+  let resumen = "";
+
+  if (diasSoleados > diasNublados && diasSoleados > diasLluviosos) {
+    resumen = "Semana mayormente despejada y con buenas condiciones climáticas.";
+  } else if (diasLluviosos >= diasSoleados && diasLluviosos >= diasNublados) {
+    resumen = "Semana con presencia importante de lluvia o llovizna.";
+  } else {
+    resumen = "Semana variable, con varios días nublados o parcialmente nublados.";
+  }
+
+  return {
+    temperaturaMinima,
+    temperaturaMaxima,
+    temperaturaPromedio,
+    diasSoleados,
+    diasNublados,
+    diasLluviosos,
+    resumen,
+  };
+}
+
 const ciudadGuardada = JSON.parse(localStorage.getItem("ciudadSeleccionada"));
 
 if (!ciudadGuardada) {
@@ -42,8 +113,13 @@ if (!ciudadGuardada) {
     `;
   }
 } else {
-  mostrarDetalle(ciudadGuardada);
-  mostrarPronostico(ciudadGuardada.pronostico);
+  const ciudad = buscarCiudadPorId(ciudadGuardada.id);
+
+  if (ciudad) {
+    mostrarDetalle(ciudad);
+    mostrarPronostico(ciudad.pronosticoSemanal);
+    mostrarEstadisticas(ciudad.pronosticoSemanal);
+  }
 }
 
 function mostrarDetalle(ciudad) {
@@ -93,12 +169,13 @@ function mostrarDetalle(ciudad) {
   `;
 }
 
-function mostrarPronostico(pronostico) {
+function mostrarPronostico(pronosticoSemanal) {
   if (!contenedorPronostico) return;
 
   contenedorPronostico.innerHTML = "";
 
-  pronostico.forEach((dia) => {
+  for (let i = 0; i < pronosticoSemanal.length; i++) {
+    const dia = pronosticoSemanal[i];
     const iconoDia = dia.icono || obtenerIcono(dia.estado);
 
     const columna = document.createElement("div");
@@ -123,5 +200,87 @@ function mostrarPronostico(pronostico) {
     `;
 
     contenedorPronostico.appendChild(columna);
-  });
+  }
+}
+
+function mostrarEstadisticas(pronosticoSemanal) {
+  if (!contenedorEstadisticas) return;
+
+  const estadisticas = calcularEstadisticas(pronosticoSemanal);
+
+  contenedorEstadisticas.innerHTML = `
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <article class="forecast-card">
+          <div class="forecast-card__body">
+            <h3 class="forecast-card__day">Temperatura mínima</h3>
+            <p class="forecast-card__temp forecast-card__temp--min">
+              ${estadisticas.temperaturaMinima}°C
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <article class="forecast-card">
+          <div class="forecast-card__body">
+            <h3 class="forecast-card__day">Temperatura máxima</h3>
+            <p class="forecast-card__temp forecast-card__temp--max">
+              ${estadisticas.temperaturaMaxima}°C
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <article class="forecast-card">
+          <div class="forecast-card__body">
+            <h3 class="forecast-card__day">Promedio semanal</h3>
+            <p class="forecast-card__temp">
+              ${estadisticas.temperaturaPromedio}°C
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="row g-4 mt-1">
+      <div class="col-12 col-md-4">
+        <article class="forecast-card">
+          <div class="forecast-card__body">
+            <h3 class="forecast-card__day">Días despejados</h3>
+            <p class="forecast-card__status">
+              ${estadisticas.diasSoleados} día(s)
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <article class="forecast-card">
+          <div class="forecast-card__body">
+            <h3 class="forecast-card__day">Días nublados</h3>
+            <p class="forecast-card__status">
+              ${estadisticas.diasNublados} día(s)
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <article class="forecast-card">
+          <div class="forecast-card__body">
+            <h3 class="forecast-card__day">Días con lluvia</h3>
+            <p class="forecast-card__status">
+              ${estadisticas.diasLluviosos} día(s)
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="alert alert-info mt-4 text-center" role="alert">
+      ${estadisticas.resumen}
+    </div>
+  `;
 }
