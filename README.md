@@ -207,7 +207,8 @@ weather-frontend-m4/
 │       ├── ciudades/
 │       └── clima/
 
-## 🔗 Repositorios del proyecto
+
+## 🔗 Repositorio del Proyecto
 
 - Módulo 4: [weather-frontend-m4] https://github.com/Paula-front/weather-frontend-m4 
 
