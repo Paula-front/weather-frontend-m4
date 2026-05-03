@@ -10,10 +10,17 @@
   &:hover {
     transform: translateY(-6px);
     box-shadow: v.$shadow-lg;
+
+    // 🔥 zoom imagen en hover
+    .place-card__image {
+      transform: scale(1.08);
+    }
   }
 
   &__image {
     @include m.image-cover(220px);
+    display: block;
+    transition: transform 0.4s ease;
   }
 
   &__body {
@@ -42,6 +49,9 @@
     height: 54px;
     object-fit: contain;
     flex-shrink: 0;
+
+    // 🔥 animación flotante
+    animation: floatIcon 3s ease-in-out infinite;
   }
 
   &__temp {
@@ -62,5 +72,18 @@
 
   &__button {
     width: 100%;
+  }
+}
+
+// 🔥 animación global
+@keyframes floatIcon {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }
