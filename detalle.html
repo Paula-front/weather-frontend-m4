@@ -6,7 +6,7 @@
   <title>Detalle del clima | Ciudades de Chile</title>
   <meta
     name="description"
-    content="Consulta el detalle del clima actual y el pronóstico semanal de una ciudad de Chile."
+    content="Consulta el detalle del clima actual, el pronóstico semanal y las estadísticas climáticas de una ciudad de Chile."
   />
 
   <!-- Bootstrap CSS -->
@@ -70,7 +70,7 @@
             Información climática de la ciudad seleccionada
           </h1>
           <p class="hero__text">
-            Revisa la temperatura actual, el estado del tiempo y el pronóstico semanal.
+            Revisa la temperatura actual, el estado del tiempo, el pronóstico semanal y las estadísticas de la semana.
           </p>
         </div>
       </div>
@@ -113,6 +113,29 @@
           class="row g-4 forecast-section__grid"
           id="forecastGrid"
           aria-label="Pronóstico semanal de la ciudad"
+        >
+          <!-- Render dinámico -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTADÍSTICAS -->
+    <section class="statistics-section" aria-labelledby="statistics-title">
+      <div class="container statistics-section__container">
+        <div class="statistics-section__header">
+          <h2 class="statistics-section__title" id="statistics-title">
+            Estadísticas de la semana
+          </h2>
+          <p class="statistics-section__text">
+            Resumen calculado automáticamente a partir del pronóstico semanal.
+          </p>
+        </div>
+
+        <!-- JS renderiza aquí -->
+        <div
+          class="statistics-section__content"
+          id="weatherStats"
+          aria-label="Estadísticas climáticas semanales"
         >
           <!-- Render dinámico -->
         </div>
