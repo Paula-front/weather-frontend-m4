@@ -76,9 +76,9 @@ function calcularEstadisticas(pronosticoSemanal) {
     }
   }
 
-  const temperaturaPromedio = (
-    sumaTemperaturas / pronosticoSemanal.length
-  ).toFixed(1);
+ const temperaturaPromedio = Math.round(
+  sumaTemperaturas / pronosticoSemanal.length
+);
 
   let resumen = "";
 
