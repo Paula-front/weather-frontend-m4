@@ -1,46 +1,21 @@
-@use "../abstracts/mixins" as m;
-@use "../abstracts/variables" as v;
-
 .hero {
-  padding: 4.5rem 0 3rem;
-  position: relative;
-
-  &--detail {
-    padding-bottom: 2.5rem;
-  }
-
-  &__container {
-    position: relative;
-    z-index: 1;
-  }
+  padding: 3rem 0;
 
   &__content {
-    @include m.card-base;
-    padding: clamp(1.5rem, 4vw, 3rem);
-    background:
-      linear-gradient(135deg, rgba(47, 128, 237, 0.18), rgba(86, 204, 242, 0.08)),
-      linear-gradient(180deg, rgba(17, 26, 43, 0.96), rgba(12, 20, 34, 0.98));
-  }
-
-  &__badge {
-    display: inline-block;
-    margin-bottom: v.$space-md;
-    padding: 0.45rem 0.9rem;
-    border-radius: 999px;
-    background: rgba(86, 204, 242, 0.12);
-    color: v.$color-secondary;
-    font-size: 0.9rem;
-    font-weight: 700;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   }
 
   &__title {
-    max-width: 900px;
-    margin-bottom: v.$space-md;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #1e293b;
   }
 
   &__text {
-    max-width: 760px;
-    color: v.$color-text-soft;
-    font-size: 1.05rem;
+    color: #475569;
   }
 }

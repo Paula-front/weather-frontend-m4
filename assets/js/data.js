@@ -368,10 +368,10 @@ const ciudades = [
       },
       {
         dia: "Viernes",
-        max: 13,
+        max: 10,
         min: 3,
-        estado: "Parcialmente nublado",
-        icono: "assets/img/clima/parcialmente-nublado.png",
+        estado: "lluvia",
+        icono: "assets/img/clima/lluvia.png",
       },
     ],
   },

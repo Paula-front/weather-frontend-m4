@@ -1,5 +1,25 @@
 const contenedorCiudades = document.getElementById("placesGrid");
 
+/* 🔥 NUEVO: clase visual según clima */
+function obtenerClaseClima(estado) {
+  const texto = estado.toLowerCase();
+
+  if (
+    texto.includes("lluvia") ||
+    texto.includes("llovizna") ||
+    texto.includes("chubasc")
+  ) {
+    return "place-card--lluvia";
+  }
+
+  if (texto.includes("nublado") || texto.includes("cubierto")) {
+    return "place-card--nublado";
+  }
+
+  return "place-card--soleado";
+}
+
+/* 🔥 ICONOS */
 function obtenerIcono(estado) {
   const texto = estado.toLowerCase();
 
@@ -29,6 +49,7 @@ function obtenerIcono(estado) {
   return "assets/img/clima/soleado.png";
 }
 
+/* 🔥 RENDER PRINCIPAL */
 function mostrarCiudades() {
   if (!contenedorCiudades) return;
 
@@ -36,12 +57,13 @@ function mostrarCiudades() {
 
   ciudades.forEach((ciudad) => {
     const iconoActual = ciudad.icono || obtenerIcono(ciudad.estado);
+    const claseClima = obtenerClaseClima(ciudad.estado);
 
     const columna = document.createElement("div");
     columna.className = "col-12 col-md-6 col-lg-4";
 
     columna.innerHTML = `
-      <article class="place-card">
+      <article class="place-card ${claseClima}">
         <img
           src="${ciudad.imagen}"
           class="place-card__image"
@@ -58,7 +80,7 @@ function mostrarCiudades() {
             />
           </div>
 
-          <p class="place-card__temp">${ciudad.temperatura}°C</p>
+          <p class="place-card__temp">${Math.round(ciudad.temperatura)}°C</p>
           <p class="place-card__status">${ciudad.estado}</p>
 
           <div class="place-card__actions">
@@ -79,15 +101,19 @@ function mostrarCiudades() {
   agregarEventosBotones();
 }
 
+/* 🔥 EVENTOS */
 function agregarEventosBotones() {
   const botones = document.querySelectorAll(".place-card__button");
 
   botones.forEach((boton) => {
     boton.addEventListener("click", () => {
       const idCiudad = boton.dataset.id;
+
       const ciudadSeleccionada = ciudades.find(
-        (ciudad) => ciudad.id === idCiudad
+        (ciudad) => ciudad.id == idCiudad
       );
+
+      if (!ciudadSeleccionada) return;
 
       localStorage.setItem(
         "ciudadSeleccionada",
@@ -99,4 +125,5 @@ function agregarEventosBotones() {
   });
 }
 
+/* 🚀 INIT */
 mostrarCiudades();

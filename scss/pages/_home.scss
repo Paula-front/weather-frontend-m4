@@ -1,29 +1,16 @@
-@use "../abstracts/variables" as v;
+.acerca {
+  background: #ffffff;
+  color: #1e293b;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 
-.places-section {
-  &__title {
-    margin-bottom: 0.35rem;
+  h2 {
+    font-weight: 800;
+    color: #1e293b;
   }
 
-  &__text {
-    max-width: 620px;
-  }
-}
-
-.about-section {
-  &__content {
-    background: linear-gradient(180deg, rgba(18, 26, 43, 0.92), rgba(13, 20, 34, 0.98));
-    border: 1px solid v.$color-border;
-    border-radius: v.$radius-lg;
-    padding: clamp(1.5rem, 4vw, 2.5rem);
-    box-shadow: v.$shadow-sm;
-  }
-
-  &__title {
-    margin-bottom: v.$space-md;
-  }
-
-  &__text {
-    max-width: 760px;
+  p {
+    color: #475569;
   }
 }

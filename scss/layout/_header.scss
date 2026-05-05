@@ -1,43 +1,20 @@
-@use "../abstracts/variables" as v;
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-
-  &__nav {
-    border-bottom: 1px solid v.$color-border;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+.header {
+  .navbar {
+    background: #0f172a;
+    padding: 1rem 0;
   }
 
-  &__container {
-    padding-top: 0.35rem;
-    padding-bottom: 0.35rem;
+  .navbar-brand {
+    color: #ffffff !important;
+    font-weight: 800;
   }
 
-  &__brand {
-    font-weight: 700;
-  }
+  .nav-link {
+    color: #e2e8f0 !important;
+    font-weight: 600;
 
-  &__title {
-    color: v.$color-text;
-    font-size: 1.05rem;
-    font-weight: 700;
-  }
-
-  &__menu {
-    gap: 0.25rem;
-  }
-
-  &__link {
-    color: rgba(255, 255, 255, 0.82) !important;
-    font-weight: 500;
-    transition: color v.$transition-base;
-
-    &:hover,
-    &.active {
-      color: v.$color-text !important;
+    &:hover {
+      color: #38bdf8 !important;
     }
   }
 }

@@ -1,18 +1,21 @@
 $font-primary: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
-$color-bg: #0b1220;
-$color-surface: #121a2b;
-$color-surface-alt: #182338;
-$color-card: rgba(20, 30, 48, 0.92);
-$color-primary: #2f80ed;
-$color-primary-hover: #1f6ed6;
-$color-secondary: #56ccf2;
-$color-text: #f5f7fb;
-$color-text-soft: #c8d2e3;
-$color-text-muted: #97a6bf;
-$color-border: rgba(255, 255, 255, 0.08);
-$color-shadow: rgba(0, 0, 0, 0.28);
-$color-overlay: rgba(7, 12, 22, 0.55);
+$color-bg: #07111f;
+$color-surface: #102033;
+$color-surface-alt: #17324d;
+$color-card: rgba(255, 255, 255, 0.13);
+
+$color-primary: #38bdf8;
+$color-primary-hover: #0ea5e9;
+$color-secondary: #facc15;
+
+$color-text: #1f2937; // gris oscuro (no blanco)
+$color-text-soft: #4b5563;
+$color-text-muted: #6b7280;
+
+$color-border: rgba(255, 255, 255, 0.18);
+$color-shadow: rgba(2, 8, 23, 0.38);
+$color-overlay: rgba(7, 12, 22, 0.45);
 
 $radius-sm: 0.75rem;
 $radius-md: 1rem;
@@ -27,8 +30,8 @@ $space-xl: 2rem;
 $space-2xl: 3rem;
 
 $shadow-sm: 0 8px 20px $color-shadow;
-$shadow-md: 0 16px 36px rgba(0, 0, 0, 0.32);
-$shadow-lg: 0 22px 48px rgba(0, 0, 0, 0.38);
+$shadow-md: 0 18px 40px rgba(2, 8, 23, 0.35);
+$shadow-lg: 0 28px 60px rgba(2, 8, 23, 0.45);
 
 $transition-base: 0.3s ease;
 

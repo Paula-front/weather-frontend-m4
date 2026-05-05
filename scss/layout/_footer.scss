@@ -1,25 +1,32 @@
-@use "../abstracts/variables" as v;
-@use "../abstracts/mixins" as m;
+.footer {
+  width: 100%;
+  margin-top: 100px;
+  padding: 40px 20px;
 
-.site-footer {
-  border-top: 1px solid v.$color-border;
-  background: rgba(7, 12, 22, 0.85);
-  padding: v.$space-xl 0;
+  background: #010309; // oscuro fuerte
+  color: #e2e8f0;
+  text-align: center;
 
-  &__container {
-    @include m.flex-center(center, center, column);
-    gap: 0.4rem;
-    text-align: center;
+  /* 🔥 CLAVE */
+  box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.8);
+
+  /* 🔥 EXTRA: línea separadora */
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
-  &__text {
-    color: v.$color-text;
-    font-weight: 600;
+  p {
+    margin: 6px 0;
+    color: #94a3b8;
   }
 
-  &__author,
-  &__year {
-    color: v.$color-text-muted;
-    font-size: 0.95rem;
+  strong {
+    display: block;
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 8px;
   }
 }

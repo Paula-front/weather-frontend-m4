@@ -1,24 +1,11 @@
 @use "../abstracts/variables" as v;
 
 body.weather-app {
-  min-height: 100vh;
   font-family: v.$font-primary;
+  color: #1e293b;
+
   background:
-    linear-gradient(180deg, rgba(8, 13, 24, 0.92) 0%, rgba(11, 18, 32, 0.98) 100%);
-  color: v.$color-text;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.container {
-  max-width: v.$container-max;
-}
-
-.weather-app {
-  &__main {
-    overflow: hidden;
-  }
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.35), transparent 40%),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.2), transparent 30%),
+    linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
 }
